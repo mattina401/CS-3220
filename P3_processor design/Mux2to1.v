@@ -1,0 +1,18 @@
+module Mux2to1 (sel, in0, in1, out);
+	input sel;
+	input [31:0] in0, in1;
+	output [31:0] out;
+	
+	reg [31:0] out;
+	
+	always @(*) begin
+		case(sel)
+			1'b0: begin
+				out <= in0;
+			end
+			1'b1: begin
+				out <= in1;
+			end
+		endcase
+	end
+endmodule

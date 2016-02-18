@@ -1,0 +1,8 @@
+
+State Machine - |egg_timer|state
+Name state.RUN state.STOP state.MIN state.SEC state.RESET 
+state.RESET 0 0 0 0 0 
+state.SEC 0 0 0 1 1 
+state.MIN 0 0 1 0 1 
+state.STOP 0 1 0 0 1 
+state.RUN 1 0 0 0 1 

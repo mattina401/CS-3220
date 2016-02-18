@@ -1,0 +1,63 @@
+module alu (opcode, Din1, Din2, Dout, pnz);
+	input [31:0] Din1, Din2;
+	input [7:0] opcode;
+	output reg pnz;
+	output reg [31:0] Dout;
+	
+	wire signed [31:0] D1, D2;
+	wire signed [3:0] opcode1, opcode2;
+	assign D1 = Din1;
+	assign D2 = Din2;
+	//pnz = 0;
+	assign opcode1 = opcode[7:4];
+	assign opcode2 = opcode[3:0];
+	
+	//opcode2 types
+	parameter OPALUR = 4'b0000;
+	parameter OPALUI = 4'b1000;
+	
+	//opcode1 
+	parameter op0 = 4'b0000;
+	parameter op1 = 4'b0001;
+	parameter op2 = 4'b0010;
+	parameter op3 = 4'b0011;
+	parameter op4 = 4'b0100;
+	parameter op5 = 4'b0101;
+	parameter op6 = 4'b0110;
+	parameter op7 = 4'b0111;
+	parameter op8 = 4'b1000;
+	parameter op11 = 4'b1011;
+	parameter op12 = 4'b1100;
+	parameter op13 = 4'b1101;
+	parameter op14 = 4'b1110;
+	//LD SW 안들어감 
+	always @(*)
+	begin
+		//mvhi 먼저
+		if (opcode == 8'b10111000) begin
+			//dataOut <= ((data2 & 32'h0000FFFF) << 16); 
+			end
+
+		if ((opcode2 == OPALUR) || (opcode2 == OPALUI)) begin
+			case (opcode1)
+			op0: // ADD, ADDI
+				Dout <= D1+D2;
+			op1: //SUB, SUBI
+				Dout <= D1-D2;
+			op4: //AND, ANDI
+				Dout <= D1&D2;
+			op5: //OR, ORI
+				Dout <= D1|D2;
+			op6: //XOR, XORI
+				Dout <= D1^D2;
+			op12: //NAND, NANDI
+				Dout <= ~(D1&D2);
+			op13: //NOR, NORI
+				Dout <= ~(D1|D2);
+			op14: //XNOR, XNORI
+				Dout <= ~(D1^D2);
+			endcase
+			end
+		
+	end
+endmodule

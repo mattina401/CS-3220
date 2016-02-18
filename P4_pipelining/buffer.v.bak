@@ -1,0 +1,37 @@
+module buffer(dr, clk, reset, incrementedPC, aluOut, sr2Out, memWrite, regWrite, jal, memtoReg, dr_B, incrementedPC_B,aluOut_B, sr2Out_B, memWrite_B, regWrite_B, jal_B, memtoReg_B);
+	
+	parameter RESET_VALUE = 0;
+	input [3:0] dr;
+	input clk, reset;
+	input [31 : 0] incrementedPC, aluOut, sr2Out;
+	input memWrite, regWrite, jal, memtoReg;
+	output [3:0] dr_B;
+	output [31 : 0] incrementedPC_B, aluOut_B, sr2Out_B;
+	output memWrite_B, regWrite_B, jal_B, memtoReg_B;
+	reg [31 : 0] incrementedPC_B, aluOut_B, sr2Out_B, incrementedPC_P, aluOut_P, sr2Out_P;
+	reg memWrite_B, regWrite_B, jal_B, memtoReg_B, memWrite_P, regWrite_P, jal_P, memtoReg_P;
+	reg [3:0] dr_B, dr_P;
+
+	always @(posedge clk) begin
+			incrementedPC_P <= incrementedPC;
+			aluOut_P <= aluOut;
+			sr2Out_P <= sr2Out;
+			memWrite_P <= memWrite;
+			regWrite_P <= regWrite;
+			memtoReg_P <= memWrite;
+			jal_P <= jal;
+			dr_P <= dr;
+	end
+	
+	always @(negedge clk) begin
+			incrementedPC_B <= incrementedPC_P;
+			aluOut_B <= aluOut_P;
+			sr2Out_B <= sr2Out_P;
+			memWrite_B <= memWrite_P;
+			regWrite_B <= regWrite_P;
+			memtoReg_B <= memtoReg_P;
+			dr_B <= dr_P;
+			jal_B <= jal_P;
+	end
+
+endmodule

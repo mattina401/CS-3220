@@ -1,0 +1,19 @@
+; Addresses for I/O
+.NAME IOBASE= 0xF0000000
+.NAME	OFSHEX= 0x00000000
+.NAME	OFSLEDR=0x00000004
+.NAME	OFSLEDG=0x00000008
+.NAME	OFSKEY =0x00000010
+.NAME	OFSSW  =0x00000014
+
+	; This should never be executed
+	.ORIG 0
+	addi		s1,s1,0x1
+	addi		s1,s1,0x1
+	addi		s1,s1,0x1
+	add		s1,s1,s1
+	addi		s1,s1,0x1
+	addi		s1,s1,0x1
+	addi		s1,s1,0x1
+	addi		s1,s1,0x1
+

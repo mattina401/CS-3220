@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="Project2">
+		<CBX_INST_ENTRY INSTANCE_NAME="|Project2|DataMemory:dataMemory|altsyncram:data_rtl_0" CBX_FILE_NAME="altsyncram_gq61.tdf"/>
+	</PROJECT>
+</LOG_ROOT>
